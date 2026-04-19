@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garage Martin — Expert Automobile Bruxelles</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F9F9F7;--white:#fff;--ink:#0C0C0C;--ink2:#3A3A3A;--muted:#888;--blue:#1A56DB;--blues:#EEF3FF;--border:#E5E5E0;--gold:#C9913D;--green:#16A34A;--red:#DC2626;--why-bg:#0F1C3F;--footer-bg:#1A1A2E;--fh:'Cormorant Garamond',serif;--fb:'Jost',sans-serif;--r:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(249,249,247,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 16px}
+.logo{font-family:var(--fh);font-size:20px;font-weight:600;cursor:pointer;letter-spacing:.3px}.logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nb{background:none;border:none;font-family:var(--fb);font-size:13px;font-weight:400;color:var(--muted);cursor:pointer;padding:7px 12px;border-radius:8px;transition:.2s}
+.nb:hover{color:var(--ink);background:rgba(0,0,0,.05)}.nb.on{color:var(--blue);background:var(--blues);font-weight:500}
+.nb.cta{background:var(--ink);color:#fff;font-weight:500;margin-left:4px}.nb.cta:hover{background:var(--blue)}
+/* Mobile nav - hamburger */
+.nav-menu-btn{display:none;background:none;border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;cursor:pointer;font-size:16px;color:var(--ink)}
+.nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px;z-index:800;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.nav-mobile.open{display:flex}
+.nb-mobile{background:none;border:none;font-family:var(--fb);font-size:14px;font-weight:400;color:var(--ink2);cursor:pointer;padding:12px 16px;border-radius:8px;text-align:left;transition:.2s;width:100%}
+.nb-mobile:hover{background:var(--blues);color:var(--blue)}
+.nb-mobile.on{color:var(--blue);background:var(--blues);font-weight:500}
+.nb-mobile.cta{background:var(--ink);color:#fff;font-weight:500;text-align:center;margin-top:4px}
+.ann-bar{background:var(--blue);padding:8px 12px;text-align:center;font-size:12px;font-weight:500;color:#fff;display:none}.ann-bar.show{display:block}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:60px}.page.on{display:block;animation:pgIn .4s ease}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sr{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}.sr.vis{opacity:1;transform:translateY(0)}
+.sr.d1{transition-delay:.07s}.sr.d2{transition-delay:.14s}.sr.d3{transition-delay:.21s}.sr.d4{transition-delay:.28s}
+.rp{position:relative;overflow:hidden}
+.rpe{position:absolute;border-radius:50%;background:rgba(26,86,219,.12);transform:scale(0);animation:rip .5s linear;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+
+/* ── BUTTONS ── */
+.btn{padding:12px 22px;border-radius:var(--r);font-size:14px;font-weight:500;border:none;cursor:pointer;font-family:var(--fb);letter-spacing:.02em;transition:.22s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn-ink{background:var(--ink);color:#fff}.btn-ink:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 22px rgba(26,86,219,.3)}
+.btn-ol{background:transparent;color:var(--ink);border:1.5px solid var(--border)}.btn-ol:hover{border-color:var(--ink)}
+.btn-wh{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25)}.btn-wh:hover{background:rgba(255,255,255,.22)}
+.btn-full{width:100%}
+
+/* ── HERO ── */
+.hero{max-width:1100px;margin:0 auto;padding:40px 16px 36px;display:grid;grid-template-columns:1.2fr .85fr;gap:44px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.tag-line{width:20px;height:1.5px;background:var(--blue)}
+h1{font-family:var(--fh);font-size:60px;font-weight:600;line-height:.97;letter-spacing:-.5px;margin-bottom:16px}
+h1 em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:15px;color:var(--ink2);line-height:1.75;max-width:420px;margin-bottom:28px}
+.hero-btns{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.trust-row{display:flex;gap:14px;flex-wrap:wrap}
+.tr-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}.tr-item strong{color:var(--ink);font-weight:500}
+.hcard{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 6px 32px rgba(0,0,0,.07);position:relative;overflow:hidden}
+.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#6366F1)}
+.hc-ey{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.hc-t{font-family:var(--fh);font-size:20px;font-weight:600;margin-bottom:16px}
+.fg{margin-bottom:11px}
+.fg label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+.fi{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;font-family:var(--fb);font-size:14px;color:var(--ink);background:var(--bg);outline:none;transition:.22s}
+.fi:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 3px rgba(26,86,219,.08)}.fi option{background:var(--white)}
+.fbtn{width:100%;background:var(--ink);color:#fff;border:none;padding:13px;border-radius:9px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--fb);transition:.22s;margin-top:4px}
+.fbtn:hover{background:var(--blue)}.fbtn:disabled{background:var(--border);cursor:not-allowed}
+.fnote{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--ink);padding:14px 0;overflow:hidden}
+.mq-track{display:flex;gap:44px;animation:mq 20s linear infinite;white-space:nowrap;width:max-content}
+.mq-item{font-family:var(--fh);font-size:15px;letter-spacing:1.5px;color:rgba(255,255,255,.2);flex-shrink:0}
+.mq-dot{color:var(--blue);opacity:.45;flex-shrink:0}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── STATS ── */
+.stats-wrap{padding:28px 16px;max-width:1100px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.stat-box{background:var(--white);padding:22px 16px;text-align:center;transition:.2s;cursor:default}.stat-box:hover{background:var(--blues)}
+.stat-num{font-family:var(--fh);font-size:38px;font-weight:600;color:var(--ink);line-height:1}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:5px}
+
+/* ── AVIS ── */
+.avis-section{padding:48px 16px;background:var(--bg)}
+.avis-inner{max-width:1100px;margin:0 auto}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.section-h{font-family:var(--fh);font-size:42px;font-weight:600;line-height:.97;letter-spacing:-.3px}
+.section-h em{font-style:italic;color:var(--blue)}
+.avis-controls{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.rating-mini{display:flex;align-items:center;gap:10px}
+.rm-num{font-family:var(--fh);font-size:26px;font-weight:600}
+.rm-stars{color:var(--gold);font-size:13px;letter-spacing:2px}
+.rm-cnt{font-size:12px;color:var(--muted)}
+.avis-wrap{overflow:hidden;border-radius:var(--r)}
+.avis-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.avis-slide{min-width:100%}
+.rev-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.rc-top{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center}
+.rc-stars{color:var(--gold);font-size:15px;letter-spacing:2px}.rc-date{font-size:11px;color:var(--muted)}
+.rc-text{font-size:15px;color:var(--ink2);line-height:1.75;font-style:italic;font-family:var(--fh);margin-bottom:16px}
+.rc-auth{display:flex;align-items:center;gap:9px}
+.rc-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0}
+.rc-name{font-size:13px;font-weight:500}.rc-loc{font-size:11px;color:var(--muted)}
+.avis-dots{display:flex;gap:7px;justify-content:center;margin-top:14px}
+.avis-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:.3s}
+.avis-dot.on{background:var(--blue);width:22px;border-radius:4px}
+
+/* ── WHY ── */
+.why{background:var(--why-bg);padding:56px 16px;position:relative;overflow:hidden}
+.why::before{content:'';position:absolute;top:-100px;right:-100px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.1) 0%,transparent 70%);pointer-events:none}
+.why-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.why-title{font-family:var(--fh);font-size:44px;font-weight:600;color:#fff;line-height:1;margin-bottom:12px}
+.why-title em{font-style:italic;color:#818CF8}
+.why-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75;max-width:360px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:16px;transition:.2s;cursor:default}
+.wc:hover{background:rgba(255,255,255,.1)}.wc-ico{font-size:19px;margin-bottom:8px}
+.wc-t{font-size:13px;font-weight:500;color:#fff;margin-bottom:3px}.wc-d{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* ── FOOTER ── */
+.footer{background:var(--footer-bg);padding:44px 16px 28px}
+.footer-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+.fl{font-family:var(--fh);font-size:19px;font-weight:600;margin-bottom:7px;color:#fff}.fl span{color:#818CF8}
+.fd{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;max-width:200px}
+.fc-t{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
+.fc a,.fc p{display:block;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:7px;cursor:pointer;transition:.15s}
+.fc a:hover,.fc p:hover{color:#fff}
+.footer-copy{max-width:1100px;margin:0 auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.25);text-align:center}
+
+/* ── PAGE HEADER ── */
+.ph{max-width:1100px;margin:0 auto;padding:40px 16px 36px;border-bottom:1px solid var(--border)}
+.ph-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.ph-h{font-family:var(--fh);font-size:50px;font-weight:600;line-height:.97;letter-spacing:-.3px}
+.ph-h em{font-style:italic;color:var(--blue)}.ph-s{font-size:15px;color:var(--ink2);line-height:1.7;max-width:480px;margin-top:12px}
+.pb{max-width:1100px;margin:0 auto;padding:32px 16px}
+
+/* ── SERVICES ── */
+.svc-list{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--white)}
+.svc-row{display:grid;grid-template-columns:36px 32px 1fr auto;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);transition:.22s;cursor:pointer;user-select:none}
+.svc-row:last-child{border-bottom:none}.svc-row:hover:not(.disabled){background:var(--blues)}
+.svc-row.disabled{opacity:.4;cursor:not-allowed}
+.svc-num{font-size:12px;color:var(--border);font-family:var(--fh)}.svc-ico{font-size:20px}
+.svc-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.svc-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.svc-right{text-align:right}
+.svc-price{font-family:var(--fh);font-size:17px;font-weight:500;color:var(--blue);white-space:nowrap}
+.svc-arr{font-size:14px;color:var(--border)}.svc-row:hover:not(.disabled) .svc-arr{color:var(--blue)}
+.guar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.gc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:16px;display:flex;gap:10px;transition:.2s}
+.gc:hover{border-color:rgba(26,86,219,.25)}.gc-i{font-size:17px;flex-shrink:0;margin-top:1px}
+.gc-t{font-size:13px;font-weight:500;margin-bottom:2px}.gc-d{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ── TARIFS ── */
+.tt{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.tt-hd{display:grid;grid-template-columns:1fr 90px 110px;padding:11px 16px;background:var(--ink);gap:8px}
+.tt-h{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.tt-h:nth-child(2){text-align:right}.tt-h:last-child{text-align:right}
+.tt-sec{padding:8px 16px 3px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:3px}
+.tt-row{display:grid;grid-template-columns:1fr 90px 110px;padding:12px 16px;gap:8px;border-top:1px solid var(--border);transition:.22s;cursor:pointer;align-items:center;user-select:none}
+.tt-row:hover{background:var(--blues)}
+.tt-nm{font-size:13px;color:var(--ink)}.tt-nt{font-size:10px;color:var(--muted);margin-top:1px}
+.tt-du{font-size:11px;color:var(--muted);text-align:right}
+.tt-right{display:flex;align-items:center;justify-content:flex-end;gap:5px}
+.tt-cta{font-size:9px;color:var(--blue);opacity:0;transition:.2s;font-weight:600;white-space:nowrap}
+.tt-row:hover .tt-cta{opacity:1}.tt-p{font-family:var(--fh);font-size:16px;font-weight:500;color:var(--blue)}
+.tarif-note{background:var(--blues);border:1px solid rgba(26,86,219,.15);border-radius:var(--r);padding:14px 16px;margin-top:14px;font-size:13px;color:var(--blue);line-height:1.6}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ccard{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.ccard-hd{padding:12px 16px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ccard-bd{padding:16px}
+.ci{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}.ci:last-child{margin-bottom:0}
+.ci-ico{width:34px;height:34px;border-radius:9px;background:var(--blues);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ci-lbl{font-size:10px;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.ci-val{font-size:14px;font-weight:500;color:var(--ink)}.ci-val a{color:inherit;text-decoration:none;transition:.2s}.ci-val a:hover{color:var(--blue)}
+.hr-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
+.hr-row:last-child{border-bottom:none}.hr-d{color:var(--muted)}.hr-t{font-weight:500}
+.map-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:180px;background:linear-gradient(135deg,#E8EDF5,#D0DCEF);border-radius:var(--r);text-decoration:none;transition:.22s;border:1px solid var(--border);margin-bottom:12px}
+.map-link:hover{transform:scale(1.01)}
+.map-pin{font-size:30px;animation:mpbounce .9s ease-in-out infinite alternate}
+@keyframes mpbounce{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
+.map-addr{font-size:12px;font-weight:500;color:var(--ink2);text-align:center;line-height:1.5}
+.map-cta{font-size:12px;color:var(--blue);font-weight:500}
+.msg-area{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;font-family:var(--fb);font-size:14px;color:var(--ink);background:var(--bg);outline:none;transition:.22s;resize:vertical;min-height:80px}
+.msg-area:focus{border-color:var(--blue);background:var(--white)}
+.req{color:var(--red)}
+.email-notice{background:#FFF7ED;border:1px solid #FED7AA;border-radius:9px;padding:10px 12px;font-size:12px;color:#9A3412;margin-bottom:10px}
+
+/* ── RDV ── */
+.rdv-layout{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}
+.rdv-main{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 4px 24px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.rdv-main::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#6366F1)}
+.steps-bar{display:flex;background:var(--bg);border-radius:9px;padding:3px;margin-bottom:18px}
+.step-btn{flex:1;padding:8px 4px;border-radius:7px;font-size:11px;font-weight:400;text-align:center;border:none;background:transparent;cursor:default;color:var(--muted);font-family:var(--fb);transition:.2s}
+.step-btn.on{background:var(--white);color:var(--blue);font-weight:500;box-shadow:0 1px 5px rgba(0,0,0,.08)}.step-btn.done{color:var(--green)}
+.step{display:none}.step.on{display:block;animation:pgIn .3s ease}
+.ss-grid{display:grid;gap:8px}
+.ss-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:.22s;background:var(--white);user-select:none}
+.ss-item:hover:not(.ss-off){border-color:var(--blue);background:var(--blues)}
+.ss-item.sel{border-color:var(--blue);background:var(--blues)}.ss-item.ss-off{opacity:.4;cursor:not-allowed}
+.ss-ico{font-size:18px}.ss-name{font-size:13px;font-weight:500;flex:1}
+.ss-price{font-family:var(--fh);font-size:14px;color:var(--blue);font-weight:500;white-space:nowrap}
+.ss-check{width:19px;height:19px;border-radius:50%;background:var(--blue);display:none;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0}
+.ss-item.sel .ss-check{display:flex}
+.cal-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.cal-month{font-family:var(--fh);font-size:18px;font-weight:600}
+.cal-nav{background:none;border:1.5px solid var(--border);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.cal-nav:hover{border-color:var(--blue);color:var(--blue)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-dl{text-align:center;font-size:9px;color:var(--muted);padding:4px 0;font-weight:500}
+.cday{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:6px;cursor:pointer;transition:.18s;border:1.5px solid transparent}
+.cday:hover:not(.past):not(.emp):not(.noday){background:var(--blues);color:var(--blue)}
+.cday.sel{background:var(--blue);color:#fff;font-weight:500}.cday.today{border-color:var(--blue);color:var(--blue);font-weight:500}
+.cday.past,.cday.noday{color:var(--border);cursor:not-allowed}.cday.emp{cursor:default}
+.slots-title{font-size:11px;font-weight:500;color:var(--muted);margin-bottom:8px;letter-spacing:.03em}
+.slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.slot{padding:8px 4px;border:1.5px solid var(--border);border-radius:7px;text-align:center;font-size:12px;cursor:pointer;transition:.22s;user-select:none}
+.slot:hover:not(.taken):not(.blocked){border-color:var(--blue);background:var(--blues);color:var(--blue)}
+.slot.sel{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:500}
+.slot.taken,.slot.blocked{background:var(--bg);color:var(--border);cursor:not-allowed;text-decoration:line-through}
+.conf-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px}
+.cb-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
+.cb-row:last-child{border-bottom:none}.cb-l{color:var(--muted)}.cb-v{font-weight:500}
+.step-nav{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.btn-back{background:transparent;color:var(--muted);border:1.5px solid var(--border);padding:9px 16px;border-radius:9px;font-size:13px;cursor:pointer;font-family:var(--fb);transition:.2s}
+.btn-back:hover{border-color:var(--ink);color:var(--ink)}
+.btn-next{background:var(--ink);color:#fff;border:none;padding:10px 20px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--fb);transition:.22s}
+.btn-next:hover:not(:disabled){background:var(--blue);box-shadow:0 6px 18px rgba(26,86,219,.3)}
+.btn-next:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
+.succ{text-align:center;padding:32px 12px}
+.succ-ico{font-size:48px;animation:pop .5s cubic-bezier(.36,.07,.19,.97)}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
+.succ-t{font-family:var(--fh);font-size:28px;font-weight:600;margin:12px 0 7px}
+.succ-s{font-size:13px;color:var(--muted);line-height:1.7}
+.ai-confirm{background:var(--blues);border:1px solid rgba(26,86,219,.2);border-radius:9px;padding:12px;margin-top:12px;font-size:13px;color:var(--blue);line-height:1.6;text-align:left}
+.ai-confirm strong{display:block;font-weight:600;margin-bottom:3px}
+.aside-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px}
+.ac-t{font-size:13px;font-weight:500;margin-bottom:10px}
+.av-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
+.av-row:last-child{border-bottom:none}.av-d{color:var(--muted)}
+.av-ok{color:var(--green);font-weight:500;font-size:12px}.av-warn{color:#CA8A04;font-weight:500;font-size:12px}.av-full{color:var(--red);font-weight:500;font-size:12px}
+
+/* ════════════════════════════
+   RESPONSIVE — MOBILE
+════════════════════════════ */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav-links{display:none}
+  .nav-menu-btn{display:block}
+
+  /* Hero — stack vertical */
+  .hero{grid-template-columns:1fr;gap:24px;padding:28px 16px 24px}
+  h1{font-size:44px}
+  .hero-sub{font-size:14px;max-width:100%}
+  .hero-btns .btn{font-size:13px;padding:11px 18px}
+  .trust-row{gap:10px}
+  .tr-item{font-size:11px}
+
+  /* Stats */
+  .stats-grid{grid-template-columns:1fr}
+  .stat-num{font-size:32px}
+
+  /* Avis */
+  .avis-section{padding:36px 16px}
+  .section-h{font-size:34px}
+  .avis-controls{flex-direction:column;align-items:flex-start}
+  .rc-text{font-size:14px}
+
+  /* Why */
+  .why{padding:44px 16px}
+  .why-in{grid-template-columns:1fr;gap:28px}
+  .why-title{font-size:36px}
+  .why-sub{max-width:100%}
+
+  /* Footer */
+  .footer-in{grid-template-columns:1fr 1fr;gap:24px}
+
+  /* Page header */
+  .ph{padding:28px 16px 24px}
+  .ph-h{font-size:38px}
+  .ph-s{font-size:14px}
+
+  /* Services */
+  .svc-row{grid-template-columns:28px 1fr auto;gap:10px;padding:14px}
+  .svc-num{display:none}
+  .guar-grid{grid-template-columns:1fr}
+
+  /* Tarifs */
+  .tt-hd{grid-template-columns:1fr 80px}
+  .tt-row{grid-template-columns:1fr 80px}
+  .tt-du{display:none}
+  .tt-h:nth-child(2){display:none}
+  .tt-cta{display:none}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr}
+
+  /* RDV */
+  .rdv-layout{grid-template-columns:1fr}
+  .rdv-aside{display:none}
+  .rdv-main{padding:18px}
+  .step-btn{font-size:10px;padding:7px 2px}
+  /* Calendar + slots stack vertically on mobile */
+  #step2 > div:first-child{grid-template-columns:1fr !important;gap:16px}
+  .slots-grid{grid-template-columns:repeat(4,1fr)}
+  /* Confirm step inputs stack */
+  #step3 > div:first-child{grid-template-columns:1fr !important}
+}
+
+@media (max-width: 480px) {
+  h1{font-size:36px}
+  .ph-h{font-size:32px}
+  .section-h{font-size:28px}
+  .why-title{font-size:30px}
+  .stats-wrap{padding:20px 12px}
+  .footer-in{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{width:100%}
+  .tt-hd,.tt-row{grid-template-columns:1fr 70px}
+  .tt-p{font-size:14px}
+  .slots-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="ann-bar" id="ann-bar"></div>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo rp" onclick="showPage('accueil')">Garage <span>Martin</span></div>
+    <div class="nav-links">
+      <button class="nb on" id="nb-accueil" onclick="showPage('accueil',this)">Accueil</button>
+      <button class="nb" id="nb-services" onclick="showPage('services',this)">Services</button>
+      <button class="nb" id="nb-tarifs" onclick="showPage('tarifs',this)">Tarifs</button>
+      <button class="nb" id="nb-contact" onclick="showPage('contact',this)">Contact</button>
+      <button class="nb cta rp" id="nb-rdv" onclick="showPage('rdv',this)">RDV →</button>
+    </div>
+    <button class="nav-menu-btn rp" onclick="toggleMobileNav()" id="menu-btn">☰</button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <button class="nb-mobile on" id="mnb-accueil" onclick="showPage('accueil');closeMobileNav()">Accueil</button>
+  <button class="nb-mobile" id="mnb-services" onclick="showPage('services');closeMobileNav()">Services</button>
+  <button class="nb-mobile" id="mnb-tarifs" onclick="showPage('tarifs');closeMobileNav()">Tarifs</button>
+  <button class="nb-mobile" id="mnb-contact" onclick="showPage('contact');closeMobileNav()">Contact</button>
+  <button class="nb-mobile cta rp" onclick="showPage('rdv');closeMobileNav()">Prendre RDV →</button>
+</div>
+
+<!-- ACCUEIL -->
+<div class="page on" id="page-accueil">
+  <div class="hero">
+    <div>
+      <div class="hero-tag sr"><div class="tag-line"></div>Bruxelles · Indépendant · Depuis 2004</div>
+      <h1 class="sr d1">Votre auto,<br><em>enfin</em> entre<br>de bonnes mains.</h1>
+      <p class="hero-sub sr d2">Entretien et réparation toutes marques. Devis gratuit et transparent.</p>
+      <div class="hero-btns sr d3">
+        <button class="btn btn-ink rp" onclick="showPage('rdv')">Réserver un créneau</button>
+        <a class="btn btn-ol rp" href="tel:+32477835020">📞 +32 477 83 50 20</a>
+      </div>
+      <div class="trust-row sr d4">
+        <div class="tr-item">⭐ <strong>4.9/5</strong> · 127 avis</div>
+        <div class="tr-item">🛡️ <strong>Garantie</strong> 12 mois</div>
+        <div class="tr-item">📱 <strong>SMS</strong> confirmé</div>
+      </div>
+    </div>
+    <div class="hcard sr d2">
+      <div class="hc-ey">Réservation rapide</div>
+      <div class="hc-t">Votre créneau en 2 min</div>
+      <div class="fg"><label>Nom</label><input class="fi" id="qn" type="text" placeholder="Thomas Leroy"></div>
+      <div class="fg"><label>Téléphone</label><input class="fi" id="qp" type="tel" placeholder="+32 477 XX XX XX"></div>
+      <div class="fg"><label>Email</label><input class="fi" id="qe" type="email" placeholder="thomas@email.com"></div>
+      <div class="fg"><label>Intervention</label>
+        <select class="fi" id="qs">
+          <option value="" disabled selected>Choisir une prestation</option>
+          <option>Vidange + filtres</option><option>Freins</option><option>Diagnostic moteur</option>
+          <option>Pneus</option><option>Contrôle technique</option><option>Distribution</option>
+          <option>Révision complète</option><option>Autre</option>
+        </select>
+      </div>
+      <button class="fbtn rp" onclick="quickRdv()">Continuer la réservation →</button>
+      <div class="fnote">Gratuit · Sans engagement · Confirmation email sous 2h</div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="mq-track">
+      <span class="mq-item">RENAULT</span><span class="mq-dot">·</span><span class="mq-item">PEUGEOT</span><span class="mq-dot">·</span><span class="mq-item">VOLKSWAGEN</span><span class="mq-dot">·</span><span class="mq-item">BMW</span><span class="mq-dot">·</span><span class="mq-item">MERCEDES</span><span class="mq-dot">·</span><span class="mq-item">AUDI</span><span class="mq-dot">·</span><span class="mq-item">FORD</span><span class="mq-dot">·</span><span class="mq-item">TOYOTA</span><span class="mq-dot">·</span><span class="mq-item">CITROËN</span><span class="mq-dot">·</span><span class="mq-item">OPEL</span><span class="mq-dot">·</span><span class="mq-item">SEAT</span><span class="mq-dot">·</span><span class="mq-item">SKODA</span><span class="mq-dot">·</span><span class="mq-item">RENAULT</span><span class="mq-dot">·</span><span class="mq-item">PEUGEOT</span><span class="mq-dot">·</span><span class="mq-item">VOLKSWAGEN</span><span class="mq-dot">·</span><span class="mq-item">BMW</span><span class="mq-dot">·</span><span class="mq-item">MERCEDES</span><span class="mq-dot">·</span><span class="mq-item">AUDI</span><span class="mq-dot">·</span>
+    </div>
+  </div>
+
+  <div class="stats-wrap">
+    <div class="stats-grid sr">
+      <div class="stat-box"><div class="stat-num counter" data-target="21" data-suffix="">0</div><div class="stat-lbl">Années d'expérience</div></div>
+      <div class="stat-box"><div class="stat-num counter" data-target="1400" data-suffix="+" data-group="1">0</div><div class="stat-lbl">Clients satisfaits</div></div>
+      <div class="stat-box"><div class="stat-num counter" data-target="4.9" data-suffix="★" data-float="1">0</div><div class="stat-lbl">Note Google vérifiée</div></div>
+    </div>
+  </div>
+
+  <div class="avis-section">
+    <div class="avis-inner">
+      <div class="sr">
+        <div class="section-tag"><div class="tag-line"></div>Avis clients</div>
+        <div class="avis-controls" style="margin-top:10px">
+          <div><div class="section-h">Ils nous font<br><em>confiance.</em></div></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+            <div class="rating-mini"><div class="rm-num">4.9</div><div><div class="rm-stars">★★★★★</div><div class="rm-cnt">127 avis Google</div></div></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-ol rp" style="padding:8px 14px" onclick="prevAvis()">‹</button>
+              <button class="btn btn-ol rp" style="padding:8px 14px" onclick="nextAvis()">›</button>
+            </div>
+          </div>
+        </div>
+        <div class="avis-wrap"><div class="avis-track" id="avis-track"></div></div>
+        <div class="avis-dots" id="avis-dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why">
+    <div class="why-in">
+      <div class="sr">
+        <div class="why-title">Pourquoi<br>nous <em>choisir ?</em></div>
+        <p class="why-sub" style="margin-top:12px">Un garage où on vous parle vrai. Devis avant intervention, sans jargon, sans surprise.</p>
+        <button class="btn btn-wh rp" style="margin-top:20px" onclick="showPage('services')">Voir nos services →</button>
+      </div>
+      <div class="why-grid sr d2">
+        <div class="wc"><div class="wc-ico">📄</div><div class="wc-t">Devis gratuit écrit</div><div class="wc-d">Signé avant intervention. Zéro surprise.</div></div>
+        <div class="wc"><div class="wc-ico">📱</div><div class="wc-t">Suivi SMS</div><div class="wc-d">Informé à chaque étape.</div></div>
+        <div class="wc"><div class="wc-ico">🚗</div><div class="wc-t">Véhicule de remplacement</div><div class="wc-d">Sur demande.</div></div>
+        <div class="wc"><div class="wc-ico">🛡️</div><div class="wc-t">Garantie 12 mois</div><div class="wc-d">Pièces et MO garantis.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-in">
+      <div><div class="fl">Garage <span>Martin</span></div><div class="fd">Expert automobile indépendant à Bruxelles depuis 2004.</div></div>
+      <div class="fc"><div class="fc-t">Navigation</div><p onclick="showPage('services')">Services</p><p onclick="showPage('tarifs')">Tarifs</p><p onclick="showPage('contact')">Contact</p><p onclick="showPage('rdv')">Prendre RDV</p></div>
+      <div class="fc"><div class="fc-t">Horaires</div><p style="cursor:default">Lun–Ven : 08h–18h</p><p style="cursor:default">Sam : 09h–15h</p><p style="cursor:default;color:rgba(255,255,255,.2)">Dim : Fermé</p></div>
+      <div class="fc"><div class="fc-t">Contact</div><a href="tel:+32477835020">+32 477 83 50 20</a><a href="mailto:contact@garage-martin.be">contact@garage-martin.be</a><a href="https://www.google.com/maps/search/Rue+de+la+Mécanique+42,+1000+Bruxelles" target="_blank">📍 Rue Mécanique 42</a></div>
+    </div>
+    <div class="footer-copy">© 2025 Garage Martin SPRL · TVA BE0XXX.XXX.XXX</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div class="ph"><div class="ph-tag sr"><div class="tag-line"></div>Nos prestations</div><h2 class="ph-h sr d1">Ce qu'on fait,<br><em>on le fait bien.</em></h2><p class="ph-s sr d2">Toutes marques. Cliquez pour réserver directement.</p></div>
+  <div class="pb">
+    <div class="svc-list sr" id="svc-list-el"></div>
+    <div class="guar-grid sr d2">
+      <div class="gc"><div class="gc-i">🛡️</div><div><div class="gc-t">Garantie 12 mois / 20 000 km</div><div class="gc-d">Pièces et main d'oeuvre garantis.</div></div></div>
+      <div class="gc"><div class="gc-i">📄</div><div><div class="gc-t">Devis écrit avant intervention</div><div class="gc-d">Aucun supplément sans votre accord.</div></div></div>
+      <div class="gc"><div class="gc-i">🚗</div><div><div class="gc-t">Véhicule de remplacement</div><div class="gc-d">Sur demande pour les interventions longues.</div></div></div>
+      <div class="gc"><div class="gc-i">📱</div><div><div class="gc-t">Suivi SMS en temps réel</div><div class="gc-d">Informé à chaque étape.</div></div></div>
+    </div>
+    <div style="margin-top:20px;text-align:center" class="sr d3"><button class="btn btn-ink rp btn-full" onclick="showPage('rdv')">Réserver un créneau →</button></div>
+  </div>
+</div>
+
+<!-- TARIFS -->
+<div class="page" id="page-tarifs">
+  <div class="ph"><div class="ph-tag sr"><div class="tag-line"></div>Tarifs</div><h2 class="ph-h sr d1">Des prix justes.<br><em>Sans surprise.</em></h2><p class="ph-s sr d2">Cliquez sur une ligne pour réserver directement.</p></div>
+  <div class="pb">
+    <div class="tt sr">
+      <div class="tt-hd"><div class="tt-h">Prestation</div><div class="tt-h" style="text-align:right">Tarif</div></div>
+      <div class="tt-sec">Entretien courant</div>
+      <div class="tt-row rp" data-svc="Vidange + filtres"><div><div class="tt-nm">Vidange moteur</div><div class="tt-nt">Huile + filtre inclus · ~45 min</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 65€</span></div></div>
+      <div class="tt-row rp" data-svc="Révision complète"><div><div class="tt-nm">Révision complète</div><div class="tt-nt">Vidange + filtres + bougies · ~1h30</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 130€</span></div></div>
+      <div class="tt-sec">Freinage</div>
+      <div class="tt-row rp" data-svc="Freins"><div><div class="tt-nm">Plaquettes de frein</div><div class="tt-nt">Par essieu · ~1h</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 90€</span></div></div>
+      <div class="tt-row rp" data-svc="Freins"><div><div class="tt-nm">Disques + plaquettes</div><div class="tt-nt">Par essieu · ~1h30</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 180€</span></div></div>
+      <div class="tt-row rp" data-svc="Freins"><div><div class="tt-nm">Liquide de frein</div><div class="tt-nt">Vidange complète · ~30 min</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 45€</span></div></div>
+      <div class="tt-sec">Diagnostic</div>
+      <div class="tt-row rp" data-svc="Diagnostic moteur"><div><div class="tt-nm">Diagnostic électronique</div><div class="tt-nt">Offert si réparation chez nous · ~30 min</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">39€</span></div></div>
+      <div class="tt-sec">Pneumatiques</div>
+      <div class="tt-row rp" data-svc="Pneus"><div><div class="tt-nm">Montage + équilibrage</div><div class="tt-nt">Par pneu · ~15 min</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 15€</span></div></div>
+      <div class="tt-row rp" data-svc="Pneus"><div><div class="tt-nm">Géométrie 4 roues</div><div class="tt-nt">Réglage complet · ~1h</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">dès 55€</span></div></div>
+      <div class="tt-sec">Autre</div>
+      <div class="tt-row rp" data-svc="Contrôle technique"><div><div class="tt-nm">Pré-contrôle technique</div><div class="tt-nt">Offert · ~45 min</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">Offert</span></div></div>
+      <div class="tt-row rp" data-svc="Distribution"><div><div class="tt-nm">Courroie de distribution</div><div class="tt-nt">Kit complet MO incluse · ~4h</div></div><div class="tt-right"><span class="tt-cta">Réserver →</span><span class="tt-p">Sur devis</span></div></div>
+    </div>
+    <div class="tarif-note sr d2">💡 Tarifs indicatifs. Devis gratuit avant toute intervention. Cliquez pour réserver directement.</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="ph"><div class="ph-tag sr"><div class="tag-line"></div>Contact</div><h2 class="ph-h sr d1">On est là<br><em>pour vous.</em></h2><p class="ph-s sr d2">Envoyez-nous un message — réponse par email dans la journée.</p></div>
+  <div class="pb">
+    <div class="contact-grid sr">
+      <div>
+        <div class="ccard"><div class="ccard-hd">Coordonnées</div><div class="ccard-bd">
+          <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Adresse</div><div class="ci-val"><a href="https://www.google.com/maps/search/Rue+de+la+Mécanique+42,+1000+Bruxelles" target="_blank" style="color:var(--blue)">Rue de la Mécanique 42, 1000 Bruxelles →</a></div></div></div>
+          <div class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Téléphone</div><div class="ci-val"><a href="tel:+32477835020">+32 477 83 50 20</a></div></div></div>
+          <div class="ci" style="margin-bottom:0"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:contact@garage-martin.be">contact@garage-martin.be</a></div></div></div>
+        </div></div>
+        <div class="ccard"><div class="ccard-hd">Horaires</div><div class="ccard-bd">
+          <div class="hr-row"><div class="hr-d">Lundi – Vendredi</div><div class="hr-t">08:00 – 18:00</div></div>
+          <div class="hr-row"><div class="hr-d">Samedi</div><div class="hr-t">09:00 – 15:00</div></div>
+          <div class="hr-row"><div class="hr-d">Dimanche</div><div class="hr-t" style="color:var(--muted);font-weight:300">Fermé</div></div>
+        </div></div>
+      </div>
+      <div class="sr d2">
+        <a class="map-link" href="https://www.google.com/maps/search/Rue+de+la+Mécanique+42,+1000+Bruxelles" target="_blank">
+          <div class="map-pin">📍</div>
+          <div class="map-addr">Rue de la Mécanique 42<br>1000 Bruxelles</div>
+          <div class="map-cta">Ouvrir Google Maps →</div>
+        </a>
+        <div class="ccard"><div class="ccard-hd">Envoyer un message</div><div class="ccard-bd">
+          <div class="email-notice">📧 Réponse par email à l'adresse indiquée.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div><label style="font-size:10px;color:var(--muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">Nom <span class="req">*</span></label><input class="fi" id="mn" type="text" placeholder="Thomas Leroy"></div>
+            <div><label style="font-size:10px;color:var(--muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">Email <span class="req">*</span></label><input class="fi" id="me" type="email" placeholder="thomas@email.com"></div>
+          </div>
+          <div style="margin-bottom:10px"><label style="font-size:10px;color:var(--muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">Téléphone</label><input class="fi" id="mp" type="tel" placeholder="+32 477 XX XX XX"></div>
+          <textarea class="msg-area" id="mt" placeholder="Votre message..." style="margin-bottom:10px"></textarea>
+          <button class="btn btn-ink rp btn-full" id="send-msg-btn" onclick="sendMsg()">Envoyer →</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RDV -->
+<div class="page" id="page-rdv">
+  <div class="ph"><div class="ph-tag sr"><div class="tag-line"></div>Rendez-vous</div><h2 class="ph-h sr d1">Réservez<br><em>en 3 étapes.</em></h2><p class="ph-s sr d2">Confirmation email + SMS sous 2h. Gratuit, sans engagement.</p></div>
+  <div class="pb">
+    <div class="rdv-layout sr">
+      <div class="rdv-main">
+        <div class="steps-bar">
+          <button class="step-btn on" id="sb1">1 — Service</button>
+          <button class="step-btn" id="sb2">2 — Date</button>
+          <button class="step-btn" id="sb3">3 — Infos</button>
+        </div>
+        <div class="step on" id="step1">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Choisissez votre prestation :</p>
+          <div class="ss-grid" id="ss-grid"></div>
+          <div class="step-nav"><div></div><button class="btn-next" id="nx1" disabled onclick="goStep(2)">Date & heure →</button></div>
+        </div>
+        <div class="step" id="step2">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:14px">
+            <div>
+              <div class="cal-hd"><div class="cal-month" id="cal-month-label"></div><div style="display:flex;gap:4px"><button class="cal-nav" onclick="shiftMonth(-1)">‹</button><button class="cal-nav" onclick="shiftMonth(1)">›</button></div></div>
+              <div class="cal-grid" id="cal-grid"></div>
+            </div>
+            <div><div class="slots-title" id="slots-title">← Choisissez une date</div><div class="slots-grid" id="slots-grid"></div></div>
+          </div>
+          <div><label style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">Votre véhicule</label><input class="fi" id="rdv-veh" type="text" placeholder="ex : Peugeot 308 · 2019 · 95 000 km"></div>
+          <div class="step-nav"><button class="btn-back" onclick="goStep(1)">← Retour</button><button class="btn-next" id="nx2" disabled onclick="goStep(3)">Continuer →</button></div>
+        </div>
+        <div class="step" id="step3">
+          <div class="email-notice">📧 Confirmation envoyée par email à l'adresse ci-dessous.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div><label style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px">Nom <span class="req">*</span></label><input class="fi" id="rdv-nm" type="text" placeholder="Thomas Leroy"></div>
+            <div><label style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px">Téléphone <span class="req">*</span></label><input class="fi" id="rdv-ph" type="tel" placeholder="+32 477 XX XX XX"></div>
+          </div>
+          <div style="margin-bottom:12px"><label style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px">Email <span class="req">*</span></label><input class="fi" id="rdv-em" type="email" placeholder="thomas@email.com"></div>
+          <div class="conf-box" id="conf-box"></div>
+          <div class="step-nav"><button class="btn-back" onclick="goStep(2)">← Retour</button><button class="btn-next rp" id="submit-btn" onclick="submitRdv()">Confirmer →</button></div>
+        </div>
+        <div class="step" id="step-ok">
+          <div class="succ">
+            <div class="succ-ico">✅</div>
+            <div class="succ-t">Demande envoyée !</div>
+            <div class="succ-s">Confirmation par email et SMS sous 2h.</div>
+            <div class="ai-confirm" id="ai-confirm-msg"></div>
+            <button class="btn btn-ink rp btn-full" style="margin-top:18px" onclick="resetRdv()">Nouvelle réservation</button>
+          </div>
+        </div>
+      </div>
+      <div class="rdv-aside">
+        <div class="aside-card"><div class="ac-t">Disponibilités — cette semaine</div><div id="avail-display"><div style="font-size:12px;color:var(--muted)">Chargement...</div></div></div>
+        <div class="aside-card"><div class="ac-t">Vous préférez appeler ?</div><a href="tel:+32477835020" class="btn btn-ol rp btn-full">📞 +32 477 83 50 20</a><div style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">Lun–Ven 08h–18h · Sam 09h–15h</div></div>
+        <div class="aside-card" style="background:var(--blues);border-color:rgba(26,86,219,.2)"><div style="font-size:12px;color:var(--blue);line-height:1.65">✓ Gratuit · ✓ Sans engagement · ✓ Confirmation sous 2h</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL='https://ebkumyigcfzvllsjaemh.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVia3VteWlnY2Z6dmxsc2phZW1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNjQwOTUsImV4cCI6MjA5MTk0MDA5NX0.1yG7fNkJae687HdIcODhYIbWVvW8Sua7HaYX6_YqwSc';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+const SVCS=[{id:'vidange',name:'Vidange + filtres',ico:'🔧',price:'dès 65€',desc:'Huile + filtres inclus. Garantie constructeur préservée.'},{id:'freins',name:'Freins',ico:'🛑',price:'dès 90€',desc:'Diagnostic, plaquettes, disques. Pièces OEM.'},{id:'diag',name:'Diagnostic moteur',ico:'🔍',price:'39€',desc:'Lecture codes erreur toutes marques. Offert si réparation.'},{id:'pneus',name:'Pneus',ico:'🏎️',price:'dès 15€',desc:'Montage, équilibrage, géométrie.'},{id:'ct',name:'Contrôle technique',ico:'📋',price:'Offert',desc:'Pré-contrôle offert pour passer du premier coup.'},{id:'dist',name:'Distribution',ico:'⚙️',price:'Sur devis',desc:'Courroie ou chaîne, kit embrayage.'},{id:'revision',name:'Révision complète',ico:'🔩',price:'dès 130€',desc:'Vidange + tous filtres + bougies.'},{id:'autre',name:'Autre intervention',ico:'🔨',price:'Sur devis',desc:'Devis rapide sur appel.'}];
+const ALL_SLOTS=['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+const MONTHS=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+const AVIS_DATA=[{stars:5,text:'« Je recommande les yeux fermés. Honnête, rapide, et le prix était exactement celui annoncé. »',name:'Marie Lecomte',loc:'Ixelles',av:'ML',col:'#1A56DB',date:'Il y a 2 semaines'},{stars:5,text:'« Ils ont trouvé ce que le concessionnaire n\'avait pas vu en 3 ans. Deux fois moins cher. »',name:'Kevin Maes',loc:'Schaerbeek',av:'KM',col:'#0D9488',date:'Il y a 1 mois'},{stars:5,text:'« Service irréprochable du début à la fin. Explications claires, voiture rendue propre. »',name:'Sophie Dubois',loc:'Uccle',av:'SD',col:'#7C3AED',date:'Il y a 3 semaines'},{stars:5,text:'« Devis respecté à l\'euro près, personnel très sympathique. À recommander sans hésiter. »',name:'Amina Louah',loc:'Anderlecht',av:'AL',col:'#DC2626',date:'Il y a 5 jours'},{stars:5,text:'« RDV pris en ligne le soir, voiture réparée dans la journée. Efficace, propre, honnête. »',name:'Thomas Renard',loc:'Forest',av:'TR',col:'#D97706',date:'Il y a 2 mois'},{stars:5,text:'« Ils m\'ont appelé avant de commander des pièces supplémentaires. Respect remarquable. »',name:'Pierre Vandenberghe',loc:'Woluwe',av:'PV',col:'#059669',date:'Il y a 1 semaine'},{stars:5,text:'« Mon assurance m\'a envoyé ici après un accident. Très satisfaite, j\'y retournerai. »',name:'Céline Dupont',loc:'Etterbeek',av:'CD',col:'#BE185D',date:'Il y a 3 jours'},{stars:5,text:'« VW voulait changer le moteur. Ici, anomalie de câblage — 10x moins cher. Incroyable. »',name:'Adrien Marchal',loc:'Laeken',av:'AM',col:'#065F46',date:'Il y a 1 semaine'},{stars:5,text:'« Service rapide et efficace. Prix juste, aucune mauvaise surprise. Je recommande. »',name:'Leila Benali',loc:'Ixelles',av:'LB',col:'#7E22CE',date:'Il y a 6 jours'},{stars:4,text:'« Bon garage, travail sérieux. Seul bémol : délai RDV un peu long. Qualité au rendez-vous. »',name:'Nicolas Bertrand',loc:'Saint-Gilles',av:'NB',col:'#374151',date:'Il y a 3 semaines'},{stars:5,text:'« Probablement le garage le plus honnête de Bruxelles. Je recommande sans hésiter. »',name:'Jacques Fontaine',loc:'Jette',av:'JF',col:'#1D4ED8',date:'Il y a 2 semaines'},{stars:5,text:'« La secrétaire est adorable et les mécaniciens sont compétents. Entretien impeccable. »',name:'Fatima El Amine',loc:'Molenbeek',av:'FE',col:'#92400E',date:'Il y a 4 jours'}];
+const AI_CONFIRMS=['Bonjour {name} ! RDV {service} le {date} à {time} bien reçu. Confirmation email + SMS sous 2h. — Garage Martin (+32 477 83 50 20)','Bonjour {name}, merci ! RDV {service} le {date} à {time}. Confirmation sous 2h.','Parfait {name} ! Demande reçue pour {service} le {date} à {time}. — Garage Martin'];
+let selSvc=null,selDate=null,selSlot=null,calBase=new Date(),avisIdx=0,avisTimer=null;
+
+async function getConf(k){const{data}=await sb.from('config').select('value').eq('key',k).single();return data?data.value:null;}
+
+// MOBILE NAV
+function toggleMobileNav(){const m=document.getElementById('nav-mobile');m.classList.toggle('open');document.getElementById('menu-btn').textContent=m.classList.contains('open')?'✕':'☰';}
+function closeMobileNav(){document.getElementById('nav-mobile').classList.remove('open');document.getElementById('menu-btn').textContent='☰';}
+
+// PAGE NAV
+async function showPage(name,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb,.nb-mobile').forEach(b=>b.classList.remove('on'));
+  const pg=document.getElementById('page-'+name);if(!pg)return;
+  pg.classList.add('on');
+  if(btn)btn.classList.add('on');
+  else{const nb=document.getElementById('nb-'+name);if(nb)nb.classList.add('on');const mnb=document.getElementById('mnb-'+name);if(mnb)mnb.classList.add('on');}
+  window.scrollTo({top:0,behavior:'smooth'});
+  await loadConf();
+  if(name==='services')buildSvcList();
+  if(name==='rdv'){buildSSGrid();await buildAvail();}
+  if(name==='accueil')buildAvis();
+  initSR();
+}
+
+async function loadConf(){
+  try{
+    const[svcR,ann]=await Promise.all([getConf('services'),getConf('announcement')]);
+    const bar=document.getElementById('ann-bar');
+    if(ann&&ann.trim()){bar.textContent=ann;bar.classList.add('show');}else bar.classList.remove('show');
+    window._svcConf=svcR?JSON.parse(svcR):{};
+    const slotR=await getConf('slots');
+    window._slotConf=slotR?JSON.parse(slotR):{};
+  }catch(e){window._svcConf={};window._slotConf={};}
+}
+
+function initSR(){setTimeout(()=>{const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.1});document.querySelectorAll('.sr:not(.vis)').forEach(el=>obs.observe(el));},60);}
+
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.rp');if(!btn)return;
+  const r=document.createElement('span');r.className='rpe';
+  const rect=btn.getBoundingClientRect(),sz=Math.max(rect.width,rect.height)*2;
+  r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+  btn.appendChild(r);setTimeout(()=>r.remove(),560);
+});
+
+function animCounters(){document.querySelectorAll('.counter').forEach(el=>{if(el.dataset.done)return;el.dataset.done='1';const target=parseFloat(el.dataset.target),isFloat=el.dataset.float==='1',suffix=el.dataset.suffix||'',useGroup=el.dataset.group==='1';let start=null;const step=ts=>{if(!start)start=ts;const p=Math.min((ts-start)/1600,1),ease=1-Math.pow(1-p,3);const val=isFloat?(ease*target).toFixed(1):(useGroup?Math.floor(ease*target).toLocaleString('fr-BE'):Math.floor(ease*target));el.textContent=val+suffix;if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);});}
+const ctrObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)animCounters();}),{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>ctrObs.observe(el));
+setInterval(loadConf,8000);
+
+// AVIS
+function buildAvis(){
+  const track=document.getElementById('avis-track'),dots=document.getElementById('avis-dots');if(!track)return;
+  track.innerHTML=AVIS_DATA.map(a=>`<div class="avis-slide"><div class="rev-card"><div class="rc-top"><div class="rc-stars">${'★'.repeat(a.stars)}${'☆'.repeat(5-a.stars)}</div><div class="rc-date">${a.date}</div></div><div class="rc-text">${a.text}</div><div class="rc-auth"><div class="rc-av" style="background:${a.col}">${a.av}</div><div><div class="rc-name">${a.name}</div><div class="rc-loc">${a.loc}</div></div></div></div></div>`).join('');
+  dots.innerHTML=AVIS_DATA.map((_,i)=>`<div class="avis-dot${i===0?' on':''}" onclick="goAvis(${i})"></div>`).join('');
+  clearInterval(avisTimer);avisTimer=setInterval(nextAvis,5000);
+}
+function goAvis(i){avisIdx=i;const t=document.getElementById('avis-track');if(t)t.style.transform=`translateX(-${i*100}%)`;document.querySelectorAll('.avis-dot').forEach((d,j)=>d.classList.toggle('on',j===i));clearInterval(avisTimer);avisTimer=setInterval(nextAvis,5000);}
+function nextAvis(){goAvis((avisIdx+1)%AVIS_DATA.length);}
+function prevAvis(){goAvis((avisIdx-1+AVIS_DATA.length)%AVIS_DATA.length);}
+
+// SERVICES
+function buildSvcList(){
+  const cfg=window._svcConf||{},el=document.getElementById('svc-list-el');if(!el)return;
+  el.innerHTML=SVCS.map((s,i)=>{const off=cfg[s.id]===false,num=(i+1<10?'0':'')+(i+1);
+    return `<div class="svc-row${off?' disabled':''}"${off?'':` onclick="goRdv('${s.name.replace(/'/g,"\\'")}')"`}><div class="svc-num">${num}</div><div class="svc-ico">${s.ico}</div><div><div class="svc-name">${s.name}</div><div class="svc-desc">${s.desc}${off?' <span style="color:var(--red)">— Indisponible</span>':''}</div></div><div class="svc-right"><div class="svc-price">${s.price}</div></div><div class="svc-arr">${off?'':'→'}</div></div>`;
+  }).join('');
+}
+function goRdv(name){selSvc=name;showPage('rdv');setTimeout(()=>{buildSSGrid();goStep(2);},80);}
+
+document.querySelectorAll('.tt-row').forEach(row=>{row.addEventListener('click',function(){const svc=this.getAttribute('data-svc');if(svc){selSvc=svc;showPage('rdv');setTimeout(()=>{buildSSGrid();goStep(2);},80);}});});
+
+// SS GRID
+function buildSSGrid(){
+  const cfg=window._svcConf||{},el=document.getElementById('ss-grid');if(!el)return;
+  el.innerHTML=SVCS.map(s=>{const off=cfg[s.id]===false,isSel=selSvc===s.name;
+    return `<div class="ss-item${isSel?' sel':''}${off?' ss-off':''}"${off?'':` onclick="pickSvc(this,'${s.name.replace(/'/g,"\\'")}')"`}><span class="ss-ico">${s.ico}</span><span class="ss-name">${s.name}</span><span class="ss-price">${s.price}</span><span class="ss-check">✓</span></div>`;
+  }).join('');
+  document.getElementById('nx1').disabled=!selSvc;
+}
+function pickSvc(el,name){document.querySelectorAll('.ss-item').forEach(i=>i.classList.remove('sel'));el.classList.add('sel');selSvc=name;document.getElementById('nx1').disabled=false;}
+
+async function goStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.step-btn').forEach((b,i)=>{b.classList.remove('on','done');if(i+1<n)b.classList.add('done');if(i+1===n)b.classList.add('on');});
+  const s=document.getElementById('step'+n);if(s)s.classList.add('on');
+  if(n===2){buildCal();await buildAvail();}
+  if(n===3)buildConf();
+}
+
+function buildCal(){
+  const y=calBase.getFullYear(),m=calBase.getMonth();
+  document.getElementById('cal-month-label').textContent=MONTHS[m]+' '+y;
+  const firstDay=(new Date(y,m,1).getDay()||7)-1,lastDate=new Date(y,m+1,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  let html=['Lu','Ma','Me','Je','Ve','Sa','Di'].map(d=>`<div class="cal-dl">${d}</div>`).join('');
+  for(let i=0;i<firstDay;i++)html+='<div class="cday emp"></div>';
+  for(let d=1;d<=lastDate;d++){
+    const td=new Date(y,m,d);td.setHours(0,0,0,0);
+    const isSun=td.getDay()===0,isPast=td<today,isToday=td.getTime()===today.getTime(),isSel=selDate&&selDate.getTime()===td.getTime();
+    let cls='cday';if(isPast||isSun)cls+=' past noday';else if(isSel)cls+=' sel';else if(isToday)cls+=' today';
+    html+=`<div class="${cls}"${(isPast||isSun)?'':` onclick="pickDate(this,'${y}-${m+1}-${d}')"`}>${d}</div>`;
+  }
+  document.getElementById('cal-grid').innerHTML=html;
+}
+function shiftMonth(d){calBase.setMonth(calBase.getMonth()+d);buildCal();}
+
+async function pickDate(el,ds){
+  document.querySelectorAll('.cday').forEach(d=>d.classList.remove('sel'));el.classList.add('sel');
+  const[y,m,day]=ds.split('-');selDate=new Date(parseInt(y),parseInt(m)-1,parseInt(day));
+  selSlot=null;document.getElementById('nx2').disabled=true;
+  document.getElementById('slots-title').textContent='Créneaux — '+selDate.toLocaleDateString('fr-BE',{weekday:'short',day:'numeric',month:'short'});
+  await buildSlots();
+}
+
+async function buildSlots(){
+  if(!selDate)return;
+  const dk=selDate.toISOString().split('T')[0];
+  const sc=window._slotConf||{},blocked=sc[dk]||{};
+  const{data:bk}=await sb.from('bookings').select('time').eq('date',selDate.toISOString());
+  const taken={};(bk||[]).forEach(b=>{if(b.time)taken[b.time]=true;});
+  document.getElementById('slots-grid').innerHTML=ALL_SLOTS.map(t=>{const cls=taken[t]?'slot taken':blocked[t]?'slot blocked':'slot';return `<div class="${cls}"${(taken[t]||blocked[t])?'':` onclick="pickSlot(this,'${t}')"`}>${t}</div>`;}).join('');
+}
+
+function pickSlot(el,t){document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');selSlot=t;const veh=document.getElementById('rdv-veh');document.getElementById('nx2').disabled=!veh||!veh.value.trim();}
+document.addEventListener('input',e=>{if(e.target.id==='rdv-veh'&&selSlot)document.getElementById('nx2').disabled=!e.target.value.trim();});
+
+function buildConf(){
+  const df=selDate?selDate.toLocaleDateString('fr-BE',{weekday:'long',day:'numeric',month:'long',year:'numeric'}):'—';
+  document.getElementById('conf-box').innerHTML=`<div class="cb-row"><div class="cb-l">Service</div><div class="cb-v">${selSvc||'—'}</div></div><div class="cb-row"><div class="cb-l">Date</div><div class="cb-v">${df}</div></div><div class="cb-row"><div class="cb-l">Heure</div><div class="cb-v">${selSlot||'—'}</div></div><div class="cb-row"><div class="cb-l">Véhicule</div><div class="cb-v">${document.getElementById('rdv-veh')?.value||'—'}</div></div>`;
+}
+
+async function submitRdv(){
+  const nm=document.getElementById('rdv-nm').value.trim(),ph=document.getElementById('rdv-ph').value.trim(),em=document.getElementById('rdv-em').value.trim();
+  if(!nm||!ph||!em){alert('Merci de renseigner nom, téléphone et email.');return;}
+  if(!em.includes('@')){alert('Email invalide.');return;}
+  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Envoi...';
+  try{
+    const{error}=await sb.from('bookings').insert([{id:Date.now(),name:nm,phone:ph,email:em,vehicle:document.getElementById('rdv-veh').value,service:selSvc,date:selDate?selDate.toISOString():'',time:selSlot,status:'nouveau'}]);
+    if(error)throw error;
+    const df=selDate?selDate.toLocaleDateString('fr-BE',{day:'2-digit',month:'2-digit',year:'numeric'}):'—';
+    const tmpl=AI_CONFIRMS[Math.floor(Math.random()*AI_CONFIRMS.length)];
+    document.getElementById('ai-confirm-msg').innerHTML=`<strong>📧 Confirmation envoyée à ${em} :</strong>${tmpl.replace('{name}',nm).replace('{service}',selSvc||'').replace('{date}',df).replace('{time}',selSlot||'')}`;
+    document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));
+    document.querySelectorAll('.step-btn').forEach(b=>{b.classList.remove('on');b.classList.add('done');});
+    document.getElementById('step-ok').classList.add('on');
+  }catch(e){alert('Erreur. Appelez le +32 477 83 50 20');btn.disabled=false;btn.textContent='Confirmer →';}
+}
+
+function resetRdv(){
+  selSvc=null;selDate=null;selSlot=null;
+  ['rdv-nm','rdv-ph','rdv-em','rdv-veh'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.step-btn').forEach((b,i)=>{b.classList.remove('done','on');if(i===0)b.classList.add('on');});
+  document.getElementById('step1').classList.add('on');
+  document.getElementById('nx1').disabled=true;
+  document.getElementById('submit-btn').disabled=false;document.getElementById('submit-btn').textContent='Confirmer →';
+  buildSSGrid();buildAvail();
+}
+
+async function buildAvail(){
+  const el=document.getElementById('avail-display');if(!el)return;
+  try{
+    const slotR=await getConf('slots');const sc=slotR?JSON.parse(slotR):{};
+    const{data:bk}=await sb.from('bookings').select('date,time');
+    const today=new Date();today.setHours(0,0,0,0);
+    const dow=today.getDay()||7,monday=new Date(today);monday.setDate(today.getDate()-(dow-1));
+    let html='';
+    for(let i=0;i<6;i++){
+      const d=new Date(monday);d.setDate(monday.getDate()+i);if(d.getDay()===0)continue;
+      const dk=d.toISOString().split('T')[0],bl=sc[dk]||{},taken={};
+      (bk||[]).forEach(b=>{if(b.date&&new Date(b.date).toISOString().split('T')[0]===dk)taken[b.time]=true;});
+      const free=ALL_SLOTS.filter(s=>!bl[s]&&!taken[s]).length;
+      const label=d.toLocaleDateString('fr-BE',{weekday:'short',day:'numeric'});
+      const status=free===0?'<span class="av-full">Complet</span>':free<=2?`<span class="av-warn">${free} créneau${free>1?'x':''}</span>`:`<span class="av-ok">${free} créneaux</span>`;
+      html+=`<div class="av-row"><div class="av-d">${label.charAt(0).toUpperCase()+label.slice(1)}</div>${status}</div>`;
+    }
+    el.innerHTML=html||'<div style="font-size:12px;color:var(--muted)">Aucune info</div>';
+  }catch(e){el.innerHTML='<div style="font-size:12px;color:var(--muted)">Chargement...</div>';}
+}
+
+function quickRdv(){
+  const n=document.getElementById('qn').value.trim(),p=document.getElementById('qp').value.trim(),e2=document.getElementById('qe').value.trim(),s=document.getElementById('qs').value;
+  if(!n||!p||!e2||!s){alert('Merci de remplir tous les champs.');return;}
+  if(!e2.includes('@')){alert('Email invalide.');return;}
+  selSvc=s;showPage('rdv');setTimeout(()=>{buildSSGrid();goStep(2);},80);
+}
+
+function genAIReply(msg,name){const m=msg.toLowerCase();if(m.includes('rdv')||m.includes('rendez')||m.includes('réserver'))return`Bonjour ${name}, pour RDV utilisez le formulaire en ligne ou appelez le +32 477 83 50 20.`;if(m.includes('prix')||m.includes('tarif'))return`Bonjour ${name}, nos tarifs sont sur notre site. Devis gratuit : +32 477 83 50 20.`;if(m.includes('horaire')||m.includes('ouvert'))return`Bonjour ${name}, ouverts Lun–Ven 08h–18h et Sam 09h–15h.`;return`Bonjour ${name}, merci ! Notre équipe vous répond dans la journée. Urgence : +32 477 83 50 20. — Garage Martin`;}
+
+async function sendMsg(){
+  const nm=document.getElementById('mn').value.trim(),em=document.getElementById('me').value.trim(),ph=document.getElementById('mp').value.trim(),tx=document.getElementById('mt').value.trim();
+  if(!nm||!em||!tx){alert('Merci de renseigner nom, email et message.');return;}
+  if(!em.includes('@')){alert('Email invalide.');return;}
+  const btn=document.getElementById('send-msg-btn');btn.textContent='Envoi...';btn.disabled=true;
+  try{
+    const aiOn=await getConf('ai_enabled');const aiReply=aiOn==='1'?genAIReply(tx,nm):'';
+    const{error}=await sb.from('messages').insert([{id:Date.now(),name:nm,phone:ph,email:em,message:tx,status:aiOn==='1'?'lu':'nouveau',reply:'',ai_reply:aiReply}]);
+    if(error)throw error;
+    document.getElementById('mn').value='';document.getElementById('me').value='';document.getElementById('mp').value='';document.getElementById('mt').value='';
+    alert(aiOn==='1'&&aiReply?`Message envoyé !\n\nRéponse automatique envoyée à ${em} :\n"${aiReply}"`:`Message envoyé ! Nous vous répondrons à ${em} dans la journée.`);
+  }catch(e){alert('Erreur. Appelez-nous : +32 477 83 50 20');}
+  btn.textContent='Envoyer →';btn.disabled=false;
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  document.getElementById('nb-accueil').classList.add('on');
+  document.getElementById('mnb-accueil').classList.add('on');
+  await loadConf();buildSvcList();buildAvis();initSR();
+});
+</script>
+</body>
+</html>
